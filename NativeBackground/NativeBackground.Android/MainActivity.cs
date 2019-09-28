@@ -1,6 +1,8 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using NativeBackground.Droid.Services;
 using Prism;
 using Prism.Ioc;
 
@@ -16,6 +18,8 @@ namespace NativeBackground.Droid
 
             base.OnCreate(bundle);
 
+            UserDialogs.Init(this);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
         }
@@ -25,7 +29,7 @@ namespace NativeBackground.Droid
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Register any platform specific implementations
+            containerRegistry.Register<IRandomUploadService, RandomUploadService>();
         }
     }
 }

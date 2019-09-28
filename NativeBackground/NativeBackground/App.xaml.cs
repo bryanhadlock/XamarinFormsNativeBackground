@@ -4,6 +4,7 @@ using NativeBackground.ViewModels;
 using NativeBackground.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Acr.UserDialogs;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace NativeBackground
@@ -30,6 +31,10 @@ namespace NativeBackground
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+
+
+            containerRegistry.RegisterInstance<IUserDialogs>(UserDialogs.Instance);
+            containerRegistry.RegisterInstance<IMessagingCenter>(MessagingCenter.Instance);
         }
     }
 }

@@ -1,3 +1,6 @@
 NativeBackground/NativeBackground.Android/obj
 NativeBackground/NativeBackground.iOS/obj
 NativeBackground/NativeBackground/obj
+.vs
+NativeBackground/NativeBackground.Android/bin
+NativeBackground/NativeBackground/bin
