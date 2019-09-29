@@ -5,7 +5,7 @@
              Title="{Binding Title}">
 
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Button Text="Push To Simulate Upload" />
+        <Button Text="Push To Simulate Upload" Command="{Binding PushRandomCommand}" />
     </StackLayout>
 
 </ContentPage>
