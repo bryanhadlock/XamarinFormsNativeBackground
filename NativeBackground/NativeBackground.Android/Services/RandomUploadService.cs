@@ -7,26 +7,26 @@ using NativeBackground.Droid.Worker;
 
 namespace NativeBackground.Droid.Services
 {
-    public class RandomUploadService : IRandomUploadService
-    {
-        public RandomUploadService()
-        {
-        }
+	public class RandomUploadService : IRandomUploadService
+	{
+		public RandomUploadService()
+		{
+		}
 
-        public Task StartUploadForIdAsync(Guid id)
-        {
+		public async Task<string> StartUploadForIdAsync(Guid id)
+		{
 			Data.Builder data = new Data.Builder();
 			data.PutString("id", id.ToString());
-			OneTimeWorkRequest taxWorkRequest = OneTimeWorkRequest.Builder.From<RandomUploadWorker>()
+			OneTimeWorkRequest oneTimeWorkRequest = OneTimeWorkRequest.Builder.From<RandomUploadWorker>()
 				.SetInputData(data.Build())
 				.Build();
-			WorkManager.Instance.Enqueue(taxWorkRequest);
+			WorkManager.Instance.Enqueue(oneTimeWorkRequest);
 
 			ILifecycleOwner owner = ProcessLifecycleOwner.Get();
 
 			//Observe what happened to this request so we can notify the UI
-			WorkManager.Instance.GetWorkInfoByIdLiveData(taxWorkRequest.Id).Observe(owner, new RandomWorkerObserver());
-			return Task.CompletedTask;
+			WorkManager.Instance.GetWorkInfoByIdLiveData(oneTimeWorkRequest.Id).Observe(owner, new RandomWorkerObserver());
+			return oneTimeWorkRequest.Id.ToString();
 		}
-    }
+	}
 }

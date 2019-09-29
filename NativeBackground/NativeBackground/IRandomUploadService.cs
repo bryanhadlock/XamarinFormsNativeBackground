@@ -5,6 +5,6 @@ namespace NativeBackground
 {
     public interface IRandomUploadService
     {
-        Task StartUploadForIdAsync(Guid id);
+        Task<string> StartUploadForIdAsync(Guid id);
     }
 }

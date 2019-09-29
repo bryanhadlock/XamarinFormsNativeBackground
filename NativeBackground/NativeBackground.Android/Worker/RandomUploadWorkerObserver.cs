@@ -20,30 +20,29 @@ namespace NativeBackground.Droid.Worker
 			{
 				WorkInfo.State state = result.GetState();
 
-				var id = result.OutputData.GetString("id");
 				if (state == WorkInfo.State.Running)
 				{
-					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Running", id);
+					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Running", result.Id.ToString());
 				}
 				else if (state == WorkInfo.State.Blocked)
 				{
-					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Blocked", id);
+					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Blocked", result.Id.ToString());
 				}
 				else if (state == WorkInfo.State.Enqueued)
 				{
-					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Enqueued", id);
+					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Enqueued", result.Id.ToString());
 				}
 				else if (state == WorkInfo.State.Cancelled)
 				{
-					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Cancelled", id);
+					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Cancelled", result.Id.ToString());
 				}
 				else if (state == WorkInfo.State.Failed)
 				{
-					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Failed", id);
+					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Failed", result.Id.ToString());
 				}
 				else if (state == WorkInfo.State.Succeeded)
 				{
-					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Succeeded", id);
+					MessagingCenter.Send<IUploadStateMessenger, string>(this, "Succeeded", result.Id.ToString());
 				}
 			}
 		}
